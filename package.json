@@ -1,0 +1,13 @@
+{
+  "name": "def-project-coords",
+  "version": "1.0.0",
+  "description": "Project and unproject def map coords",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Evgenii Karasev",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.6",
+    "leaflet": "^1.7.1"
+  }
+}
