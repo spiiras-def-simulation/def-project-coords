@@ -17,7 +17,7 @@ try {
         const result = projection.project(point);
         console.log(result);
       } else {
-        const data = fs.readFileSync('input.json').toString().split('\n');
+        const data = fs.readFileSync('input.json');
         const { points } = JSON.parse(data);
         const result = points.map((point) => projection.project(point));
         writeResult({ points: result });
@@ -32,7 +32,7 @@ try {
         const result = projection.unproject(point);
         console.log(result);
       } else {
-        const data = fs.readFileSync('input.json').toString().split('\n');
+        const data = fs.readFileSync('input.json');
         const { points } = JSON.parse(data);
         const result = points.map((point) => projection.unproject(point));
         writeResult({ points: result });
@@ -51,10 +51,12 @@ try {
     }
     case 'parse': {
       const parsedPoints = fs.readFileSync('input.txt').toString().split('\n');
-      const result = parsedPoints.map((point) => {
-        const [x, y] = point.split(` `);
-        return [parseFloat(x), parseFloat(y)];
-      });
+      const result = parsedPoints
+        .filter((point) => point.length)
+        .map((point) => {
+          const [x, y] = JSON.parse(point);
+          return [parseFloat(x), parseFloat(y)];
+        });
       writeResult({ points: result });
       console.log('Данные преобразованы');
       process.exit();
